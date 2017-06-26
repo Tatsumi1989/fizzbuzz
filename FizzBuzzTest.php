@@ -18,7 +18,7 @@ class FizzBuzzTest extends PHPUnit\Framework\TestCase
      * 数値の検証
      */
     public function testCheckNum() {
-        // 引数に3を渡すとfizzが返ってくる
+        // 出力が正しいか判定
         $this->expectOutputString('1
 2
 Fizz
