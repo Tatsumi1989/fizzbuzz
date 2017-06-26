@@ -18,6 +18,27 @@ class FizzBuzzTest extends PHPUnit\Framework\TestCase
      * 数値の検証
      */
     public function testCheckNum() {
+        $reflection = new \ReflectionClass($this->object);
+        $method = $reflection->getMethod('checkNum');
+        // protected や private なメソッドを実行できるようにする
+        $method->setAccessible(true);
+        // 通常の数値
+        $res = $method->invoke($this->object, 1);
+        $this->assertEquals(1, $res);
+        // 3の倍数
+        $res = $method->invoke($this->object, 3);
+        $this->assertEquals('Fizz', $res);
+        // 5の倍数
+        $res = $method->invoke($this->object, 5);
+        $this->assertEquals('Buzz', $res);
+        // 3と5の倍数
+        $res = $method->invoke($this->object, 15);
+        $this->assertEquals('FizzBuzz', $res);
+    }
+    /**
+     * 出力の検証
+     */
+    public function testPrintFizzBuzz() {
         // 出力が正しいか判定
         $this->expectOutputString('1
 2
